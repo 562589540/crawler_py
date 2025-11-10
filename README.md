@@ -337,10 +337,33 @@ python doubao_main.py      # 豆包多实例
 
 ### 🛠️ 常见问题
 
+**❌ manifest.json is missing 错误**
+
+这是camoufox浏览器安装不完整导致的，使用以下方法修复：
+
+```bash
+# 方法1：运行自动修复脚本
+python fix_camoufox.py
+
+# 方法2：使用一键修复脚本
+# macOS/Linux:
+./install_fix.sh
+
+# Windows:
+install_fix.bat
+
+# 方法3：手动修复
+pip uninstall camoufox -y
+pip cache purge
+pip install camoufox>=0.2.0 --force-reinstall --no-cache-dir
+python -m playwright install
+```
+
 **实例启动失败**
 - 检查是否已安装camoufox浏览器
 - 确认端口未被占用
 - 查看日志文件排查具体错误
+- 运行 `python fix_camoufox.py` 诊断问题
 
 **图片生成失败**
 - 确认已正确登录对应服务
@@ -351,6 +374,14 @@ python doubao_main.py      # 豆包多实例
 - 图片生成通常需要30-120秒
 - 可以通过健康检查接口监控系统状态
 - 必要时重启异常实例
+
+**依赖安装问题**
+- 确保Python版本 >= 3.8
+- 使用虚拟环境避免依赖冲突
+- 如果网络不稳定，使用国内镜像源：
+  ```bash
+  pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+  ```
 
 ## 📚 详细文档
 
